@@ -7,7 +7,6 @@ package Tiendita.Ventanas.Admin.Producto;
 
 import Tiendita.Objetos.Producto;
 import Tiendita.Registros.RegistroProducto;
-import Tiendita.Ventanas.Login;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

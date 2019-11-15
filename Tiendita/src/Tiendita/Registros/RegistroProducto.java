@@ -2,13 +2,12 @@ package Tiendita.Registros;
 
 import Tiendita.Objetos.Producto;
 import Tiendita.TDA.Simple.ListaCircularSimple;
-import java.awt.GridLayout;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroProducto implements Registro<Producto> {
@@ -111,5 +110,14 @@ public class RegistroProducto implements Registro<Producto> {
             throw new Exception("");
         }
 
+    }
+
+    public void showCOmboBox(JComboBox box) {
+        Object[] lista = producto.array();
+        Producto nuevo;
+        for (Object lista1 : lista) {
+            nuevo = (Producto) lista1;
+            box.addItem(nuevo.getNombre());
+        }
     }
 }

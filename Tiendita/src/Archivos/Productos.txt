@@ -1,0 +1,10 @@
+carne,Alimentos procesados,30.50,500,D:\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\carne.jpg
+cereal,Alimentos de trigo,17.63,500,\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\cereal.jpg
+iPhone 10,Apple,4999.99,20,\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\iPhone.jpg
+Note Book hp,laptop,2999.99,30,\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\laptop.jpg
+leche,Alimentos lacteos,9.64,600,\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\leche.jpg
+Mochila,Toto,200,60,\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\mochila.jpg
+PlayStation 4,Sony,2999.99,10,\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\play4.jpg
+Refrigeradora,congeladores nim,3400.00,50,\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\refigeradora.jpg
+Samsung Galaxy 8,Samsung,3600.00,40,\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\SS8.jpg
+Television,electrodomestico,2500.00,80,\SevenPok\Documents\Usac\IPC\IPC1\Imagenes Proyecto2\television.jpg

@@ -28,6 +28,17 @@ public class ColaPrioridad<T> extends ListaSimple<T> {
         return super.removeInicio();
     }
 
+    @Override
+    public T deleteIndex(int index) throws Exception {
+        return super.deleteIndex(index); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getSize() {
+        return super.getSize(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     public void enqueue(T dato) {
         super.addFin(dato);
     }

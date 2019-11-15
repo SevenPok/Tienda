@@ -6,7 +6,6 @@
 package Tiendita.Ventanas.Admin.Producto;
 
 import Tiendita.Registros.RegistroProducto;
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import javax.swing.table.DefaultTableModel;
 
 /**

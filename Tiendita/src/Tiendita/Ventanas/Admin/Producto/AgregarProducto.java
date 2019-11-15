@@ -253,15 +253,19 @@ public class AgregarProducto extends javax.swing.JFrame {
             float precio = Float.parseFloat(jTextFieldPrecio.getText());
             int existencia = Integer.parseInt(jTextFieldExistencia.getText());
             String imagen = jTextFieldImagen.getText();
-            RegistroProducto.getRegistroProducto().add(new Producto(identificador, nombre, descripcion, precio, existencia, imagen));
-            identificador++;
-            JOptionPane.showMessageDialog(null, "Se ha creado correctamente");
-            jTextFieldNombre.setText("");
-            jTextArea1.setText("");
-            jTextFieldImagen.setText("");
-            jTextFieldPrecio.setText("");
-            jTextFieldExistencia.setText("");
-            jLabelImagen.setIcon(null);
+            if (!RegistroProducto.getRegistroProducto().add(new Producto(identificador, nombre, descripcion, precio, existencia, imagen))) {
+                identificador++;
+                JOptionPane.showMessageDialog(null, "Se ha creado correctamente");
+                jTextFieldNombre.setText("");
+                jTextArea1.setText("");
+                jTextFieldImagen.setText("");
+                jTextFieldPrecio.setText("");
+                jTextFieldExistencia.setText("");
+                jLabelImagen.setIcon(null);
+            } else {
+                JOptionPane.showMessageDialog(null, "El nombre del prodcuto ya existe");
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
         }
@@ -321,25 +325,29 @@ public class AgregarProducto extends javax.swing.JFrame {
                 FileReader fr = new FileReader(archivo);
                 BufferedReader br = new BufferedReader(fr);
                 String linea = "";
+                String[] key = ruta.split(".");
                 while ((linea = br.readLine()) != null) {
                     String[] cadena = linea.split(",");
-                    double precio = Double.parseDouble(cadena[2]);
-                    int existencia = Integer.parseInt(cadena[3]);
-                    Producto producto = new Producto(identificador, cadena[0], cadena[1], precio, existencia, cadena[4]);
                     try {
-                        RegistroProducto.getRegistroProducto().add(producto);
-                        identificador++;
+                        double precio = Double.parseDouble(cadena[2]);
+                        int existencia = Integer.parseInt(cadena[3]);
+                        Producto producto = new Producto(identificador, cadena[0], cadena[1], precio, existencia, cadena[4]);
+                        if (!RegistroProducto.getRegistroProducto().add(producto)) {
+                            identificador++;
+                        }
+
                     } catch (Exception e) {
                     }
                 }
-                JOptionPane.showMessageDialog(null, "Se completo carga existosamente");
-
+                JOptionPane.showMessageDialog(null, "Se completo la carga existosamente");
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Error en la carga");
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error en la carga");
                 Logger.getLogger(AgregarProducto.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Error en la carga");
         }
     }//GEN-LAST:event_jButtonCargaActionPerformed
 

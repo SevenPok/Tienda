@@ -91,6 +91,25 @@ public class ListaSimple<T> {
         throw new Exception("No se encontro el dato");
     }
 
+    public T deleteIndex(int index) throws Exception {
+        if (isEmpty()) {
+            throw new Exception("Esta vacia la lista");
+        } else if (index == 0) {
+            return removeInicio();
+        } else if (index == size) {
+            return removeFin();
+        } else if (index > 0 && index < size) {
+            Nodo<T> fin = cabeza;
+            for (int i = 0; i < index - 1; i++) {
+                fin = fin.getNext();
+            }
+            fin.setNext(fin.getNext().getNext());
+            size--;
+            return fin.getNext().getDato();
+        }
+        throw new Exception("No se encontro el dato");
+    }
+
     protected void addFin(T dato) {
         Nodo<T> nuevo = new Nodo<>(dato);
         if (isEmpty()) {

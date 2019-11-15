@@ -5,7 +5,9 @@
  */
 package Tiendita.Ventanas.Admin.Oferta;
 
+import Tiendita.Registros.RegistroOferta;
 import Tiendita.Ventanas.Admin.Principal;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -113,12 +115,25 @@ public class Oferta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        AgregarOferta ventana = new AgregarOferta();
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
+        VerOfertas ventana = new VerOfertas();
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonMostrarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        if (RegistroOferta.getInstancia().tamanio() > 0) {
+            String search = JOptionPane.showInputDialog("Ingrese la posicion de la oferta");
+            int salir = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar el producto" + "?", "Alerta!", JOptionPane.YES_NO_OPTION);
+            if (JOptionPane.YES_OPTION == salir) {
+                RegistroOferta.getInstancia().delete(Integer.parseInt(search));
+            }
+        }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed

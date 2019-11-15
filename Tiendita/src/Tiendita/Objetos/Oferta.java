@@ -6,10 +6,10 @@ public class Oferta {
 
     private String descripcion;
     private double descuento;
-    private ListaSimple<String> lista;
+    private ListaSimple<Producto> lista;
     private String prioridad;
 
-    public Oferta(String descripcion, double descuento, ListaSimple<String> lista, String prioridad) {
+    public Oferta(String descripcion, double descuento, ListaSimple<Producto> lista, String prioridad) {
         this.descripcion = descripcion;
         this.descuento = descuento;
         this.lista = lista;
@@ -32,11 +32,11 @@ public class Oferta {
         this.descuento = descuento;
     }
 
-    public ListaSimple<String> getLista() {
+    public ListaSimple<Producto> getLista() {
         return lista;
     }
 
-    public void setLista(ListaSimple<String> lista) {
+    public void setLista(ListaSimple<Producto> lista) {
         this.lista = lista;
     }
 

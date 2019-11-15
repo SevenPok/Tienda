@@ -79,7 +79,7 @@ public class Producto {
     public boolean equals(Object obj) {
         if (obj instanceof Producto) {
             Producto p = (Producto) obj;
-            return this.identificador == p.identificador;
+            return this.nombre.equalsIgnoreCase(p.nombre);
         } else {
             return false;
         }
