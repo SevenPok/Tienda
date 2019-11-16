@@ -1,1 +1,2 @@
 Navidad,68,carne;leche;cereal,alta
+Tecnologi,68,Mochila;Samsung Galaxy 8;PlayStation 4,alta

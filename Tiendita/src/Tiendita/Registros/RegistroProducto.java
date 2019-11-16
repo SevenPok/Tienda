@@ -1,5 +1,7 @@
 package Tiendita.Registros;
 
+import Tiendita.Objetos.EstablecerBotones;
+import Tiendita.Objetos.Herramientas;
 import Tiendita.Objetos.Producto;
 import Tiendita.TDA.Simple.ListaCircularSimple;
 import java.awt.Image;
@@ -8,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroProducto implements Registro<Producto> {
@@ -94,6 +98,8 @@ public class RegistroProducto implements Registro<Producto> {
 
     }
 
+
+
     public String showEspecifico(DefaultTableModel modelo, int index) throws Exception {
         try {
             Producto nuevo = producto.search(index);
@@ -118,6 +124,40 @@ public class RegistroProducto implements Registro<Producto> {
         for (Object lista1 : lista) {
             nuevo = (Producto) lista1;
             box.addItem(nuevo.getNombre());
+        }
+    }
+
+    public void productos(EstablecerBotones[] establecer, JButton[] boton, JLabel[] imagen, JLabel[] descripcion,
+            JPanel panel, int x, int y, JButton pagar
+    ) {
+        Object[] lista = producto.array();
+        establecer = new EstablecerBotones[lista.length];
+        boton = new JButton[lista.length];
+        imagen = new JLabel[lista.length];
+        descripcion = new JLabel[lista.length];
+        for (int i = 0; i < lista.length; i++) {
+            boton[i] = new JButton("Agregar");
+            imagen[i] = new JLabel();
+            descripcion[i] = new JLabel(((Producto) lista[i]).getNombre() + " a Q." + ((Producto) lista[i]).getPrecio(), SwingConstants.CENTER);
+            establecer[i] = new EstablecerBotones(boton[i], imagen[i], descripcion[i], (Producto) lista[i]);
+            establecer[i].getImagen().setSize(150, 150);
+            establecer[i].getDescripcion().setSize(150, 30);
+            establecer[i].getBoton().setSize(150, 30);
+            Herramientas.setLabel(establecer[i].getImagen(), ((Producto) lista[i]).getDireccionImagen());
+            establecer[i].getImagen().setLocation(x, y);
+            establecer[i].getDescripcion().setLocation(x, y + 151);
+            establecer[i].getBoton().setLocation(x, y + 180);
+
+            establecer[i].action(pagar);
+
+            panel.add(establecer[i].getBoton());
+            panel.add(establecer[i].getImagen());
+            panel.add(establecer[i].getDescripcion());
+            x = x + 155;
+            if (x > 600) {
+                x = 1;
+                y = y + 215;
+            }
         }
     }
 }

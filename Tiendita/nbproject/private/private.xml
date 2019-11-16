@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/Ventanas/Admin/Producto/AgregarProducto.java</file>
-            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/Ventanas/Admin/Oferta/AgregarOferta.java</file>
-            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/TDA/Simple/ListaCircularSimple.java</file>
-            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/Objetos/Oferta.java</file>
+            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/Registros/tabla.java</file>
+            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/Ventanas/Usuario/Carrito.java</file>
+            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/Registros/RegistroOferta.java</file>
+            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/Objetos/Herramientas.java</file>
+            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/Objetos/Usuario.java</file>
+            <file>file:/D:/Documents/GitHub/Tienda/Tiendita/src/Tiendita/Registros/UsuarioActual.java</file>
         </group>
     </open-files>
 </project-private>

@@ -36,7 +36,7 @@ public class AgregarOferta extends javax.swing.JFrame {
             return false;
         }
     };
-
+    public static int contador = 0;
     private ListaSimple<Producto> lista;
 
     public AgregarOferta() {
@@ -293,7 +293,8 @@ public class AgregarOferta extends javax.swing.JFrame {
             double descuento = Double.parseDouble(cadena[0]);
             RegistroOferta.getInstancia().add(new Tiendita.Objetos.Oferta(jTextAreaDescripcion.getText(), descuento, lista, (String) jComboBoxPrioridad.getSelectedItem()));
             JOptionPane.showMessageDialog(null, "Se agrego correctamente");
-            lista = new ListaSimple<>();
+            ListaSimple<Producto> lista2 = new ListaSimple<>();
+            lista = lista2;
             for (int i = 0; i < jTable1.getRowCount(); i++) {
                 modelo.removeRow(i);
                 i -= 1;
@@ -318,7 +319,7 @@ public class AgregarOferta extends javax.swing.JFrame {
                 BufferedReader br = new BufferedReader(fr);
                 String linea = "";
                 while ((linea = br.readLine()) != null) {
-                    lista = new ListaSimple<>();
+                    ListaSimple<Producto> lista2 = new ListaSimple<>();
                     String[] cadena = linea.split(",");
                     String[] cadena2 = cadena[2].split(";");
                     Producto[] pro = new Producto[cadena2.length];
@@ -326,14 +327,16 @@ public class AgregarOferta extends javax.swing.JFrame {
                         for (int i = 0; i < cadena2.length; i++) {
                             try {
                                 pro[i] = RegistroProducto.getRegistroProducto().search(new Producto(0, cadena2[i], "", 0, 0, ""));
-                                lista.compareTo(pro[i]);
+                                lista2.compareTo(pro[i]);
+
                             } catch (Exception e) {
                             }
                         }
-                        RegistroOferta.getInstancia().add(new Tiendita.Objetos.Oferta(cadena[0], Double.parseDouble(cadena[1]), lista, cadena[3]));
+                        RegistroOferta.getInstancia().add(new Tiendita.Objetos.Oferta(cadena[0], Double.parseDouble(cadena[1]), lista2, cadena[3]));
                     } catch (Exception e) {
                     }
                 }
+
                 JOptionPane.showMessageDialog(null, "Se completo la carga existosamente");
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Error en la carga");

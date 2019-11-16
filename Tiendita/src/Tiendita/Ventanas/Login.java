@@ -201,7 +201,7 @@ public class Login extends javax.swing.JFrame {
                 dato.setPassword(jPasswordField.getText());
                 if (RegistroUsuario.getRegistroUsuario().login(dato)) {
                     JOptionPane.showMessageDialog(null, "Bienvenido " + dato.getUsuario());
-                    UsuarioPrincipal window = new UsuarioPrincipal(UsuarioActual.getInstancia().getUsuario());
+                    UsuarioPrincipal window = new UsuarioPrincipal();
                     window.setVisible(true);
                     this.dispose();
                 } else {

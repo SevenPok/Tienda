@@ -8,7 +8,6 @@ package Tiendita.Ventanas.Usuario;
 import Tiendita.Objetos.Tarjeta;
 import Tiendita.Objetos.Usuario;
 import Tiendita.Registros.UsuarioActual;
-import Tiendita.Ventanas.Login;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,9 +19,13 @@ public class ModificarUsuario extends javax.swing.JFrame {
     /**
      * Creates new form ModificarUsuario
      */
+    
     public ModificarUsuario() {
         initComponents();
-        establecer();
+        try {
+            establecer();
+        } catch (Exception e) {
+        }
     }
 
     public void establecer() {
@@ -290,7 +293,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 modificar.getTarjeta().setBloque2(Integer.parseInt(bloque2));
                 modificar.getTarjeta().setBloque3(Integer.parseInt(bloque3));
                 modificar.getTarjeta().setBloque4(Integer.parseInt(bloque4));
-                UsuarioPrincipal ventana = new UsuarioPrincipal(modificar);
+                UsuarioPrincipal ventana = new UsuarioPrincipal();
                 ventana.setVisible(true);
                 this.dispose();
             }
@@ -322,7 +325,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldApellidoKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        UsuarioPrincipal ventana = new UsuarioPrincipal(UsuarioActual.getInstancia().getUsuario());
+        UsuarioPrincipal ventana = new UsuarioPrincipal();
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

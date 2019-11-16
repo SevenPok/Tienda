@@ -12,7 +12,9 @@ public class Usuario implements Descuento {
     private Tarjeta tarjeta;
     private ListaCircularDoble<Producto> carrito;
     private int articulosComprados;
+    private int articulosCompradosGlobal;
     private double total;
+    private int canelaciones;
 
     public Usuario() {
     }
@@ -25,7 +27,9 @@ public class Usuario implements Descuento {
         this.tarjeta = tarjeta;
         this.carrito = new ListaCircularDoble<>();
         this.articulosComprados = 0;
+        this.articulosCompradosGlobal = 0;
         this.total = 0;
+        this.canelaciones = 0;
     }
 
     public String getUsuario() {
@@ -84,6 +88,14 @@ public class Usuario implements Descuento {
         this.articulosComprados = articulosComprados;
     }
 
+    public int getArticulosCompradosGlobal() {
+        return articulosCompradosGlobal;
+    }
+
+    public void setArticulosCompradosGlobal(int articulosCompradosGlobal) {
+        this.articulosCompradosGlobal = articulosCompradosGlobal;
+    }
+
     public double getTotal() {
         total = 0;
         Object[] car = carrito.array();
@@ -97,6 +109,14 @@ public class Usuario implements Descuento {
     public void setTotal(double total) {
 
         this.total = total;
+    }
+
+    public int getCanelaciones() {
+        return canelaciones;
+    }
+
+    public void setCanelaciones(int canelaciones) {
+        this.canelaciones = canelaciones;
     }
 
     @Override

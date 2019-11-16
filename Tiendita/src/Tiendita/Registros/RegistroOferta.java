@@ -1,11 +1,17 @@
 package Tiendita.Registros;
 
+import Tiendita.Objetos.EstablecerBotones;
 import Tiendita.Objetos.Herramientas;
 import Tiendita.Objetos.Oferta;
+import Tiendita.Objetos.Producto;
 import Tiendita.TDA.Simple.ColaPrioridad;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroOferta {
@@ -64,7 +70,57 @@ public class RegistroOferta {
 
     }
 
-    public void cargaMasiva() {
+    public int totalBoton() {
+        Object[] lista = ofertas.array();
+        int size = 0;
+        for (int i = 0; i < lista.length; i++) {
+            Object[] listaP = ((Oferta) lista[i]).getLista().array();
+            size = size + listaP.length;
+        }
+        return size++;
+    }
+
+    public void productos(EstablecerBotones[] establecer, JButton[] boton, JLabel[] imagen, JLabel[] descripcion,
+            JPanel panel, int x, int y, JButton pagar
+    ) {
+        Object[] lista = ofertas.array();
+        establecer = new EstablecerBotones[100];
+        boton = new JButton[100];
+        imagen = new JLabel[100];
+        descripcion = new JLabel[100];
+        int contador = 0;
+        for (int i = 0; i < lista.length; i++) {
+            Object[] listaP = ((Oferta) lista[i]).getLista().array();
+            for (int j = 0; j < 10; j++) {
+                try {
+
+                    boton[contador] = new JButton("Agregar");
+                    imagen[contador] = new JLabel();
+                    descripcion[contador] = new JLabel("Antes Q." + ((Producto) listaP[j]).getPrecio() + " descuento de " + ((Oferta) lista[i]).getDescuento() + "%");
+                    establecer[contador] = new EstablecerBotones(boton[contador], imagen[contador], descripcion[contador], (Producto) listaP[j]);
+                    establecer[contador].getImagen().setSize(150, 150);
+                    establecer[contador].getDescripcion().setSize(150, 30);
+                    establecer[contador].getBoton().setSize(150, 30);
+                    Herramientas.setLabel(establecer[contador].getImagen(), ((Producto) listaP[j]).getDireccionImagen());
+                    establecer[contador].getImagen().setLocation(x, y);
+                    establecer[contador].getDescripcion().setLocation(x, y + 151);
+                    establecer[contador].getBoton().setLocation(x, y + 180);
+
+                    establecer[contador].action(pagar);
+
+                    panel.add(establecer[contador].getBoton());
+                    panel.add(establecer[contador].getImagen());
+                    panel.add(establecer[contador].getDescripcion());
+                    x = x + 155;
+                    if (x > 600) {
+                        x = 1;
+                        y = y + 215;
+                    }
+                } catch (Exception e) {
+                }
+                contador++;
+            }
+        }
 
     }
 
