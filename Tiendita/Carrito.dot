@@ -1,0 +1,13 @@
+digraph G {
+
+"iPhone 10, Precio: Q.4999.99"->"Note Book hp, Precio: Q.2999.99"
+"iPhone 10, Precio: Q.4999.99"->"carne, Precio: Q.30.5"
+"Note Book hp, Precio: Q.2999.99"->"cereal, Precio: Q.17.63"
+"Note Book hp, Precio: Q.2999.99"->"iPhone 10, Precio: Q.4999.99"
+"cereal, Precio: Q.17.63"->"carne, Precio: Q.30.5"
+"cereal, Precio: Q.17.63"->"Note Book hp, Precio: Q.2999.99"
+"carne, Precio: Q.30.5"->"iPhone 10, Precio: Q.4999.99"
+"carne, Precio: Q.30.5"->"cereal, Precio: Q.17.63"
+
+
+}

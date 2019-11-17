@@ -1,6 +1,8 @@
 package Tiendita.TDA.Simple;
 
-public class ListaCircularSimple<T> {
+import Tiendita.Objetos.Prototype.Clonar;
+
+public class ListaCircularSimple<T> implements Clonar {
 
     private Nodo<T> cabeza;
     private int size;
@@ -246,5 +248,15 @@ public class ListaCircularSimple<T> {
         }
         System.out.println("");
         lista.show();
+    }
+
+    @Override
+    public Clonar clonar() {
+        ListaCircularSimple<T> lista = null;
+        try {
+            lista = (ListaCircularSimple<T>) clone();
+        } catch (Exception e) {
+        }
+        return lista;
     }
 }

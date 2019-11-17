@@ -1,9 +1,10 @@
 package Tiendita.Objetos;
 
+import Tiendita.Objetos.Prototype.Clonar;
 import Tiendita.TDA.Doble.ListaCircularDoble;
 import java.util.Objects;
 
-public class Usuario implements Descuento {
+public class Usuario implements Descuento, Clonar {
 
     private String usuario;
     private String password;
@@ -163,6 +164,17 @@ public class Usuario implements Descuento {
             descuento = 10;
         }
         return descuento / 100;
+    }
+
+    @Override
+    public Clonar clonar() {
+        Usuario usuarioC = null;
+        try {
+            usuarioC = (Usuario) clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return usuarioC;
     }
 
 }

@@ -180,7 +180,7 @@ public class TiendaProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void productos() {
-        RegistroProducto.getRegistroProducto().productos(establecer, boton, imagen, descripcion, jPanel1, 1, 1,jButtonCarrito);
+        RegistroProducto.getRegistroProducto().productos(establecer, boton, imagen, descripcion, jPanel1, 1, 1,jButtonCarrito,jScrollPane1);
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int salir = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION);

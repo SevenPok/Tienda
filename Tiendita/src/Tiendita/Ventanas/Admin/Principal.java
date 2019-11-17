@@ -5,6 +5,7 @@
  */
 package Tiendita.Ventanas.Admin;
 
+import Tiendita.Registros.Reportes.VentanaReporte;
 import Tiendita.Ventanas.Admin.Oferta.Oferta;
 import Tiendita.Ventanas.Admin.Producto.VentanaProductos;
 import Tiendita.Ventanas.Admin.Usuario.VerUsuarios;
@@ -58,6 +59,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButtonReportes.setText("Reportes");
+        jButtonReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReportesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Administrador");
@@ -150,6 +156,12 @@ public class Principal extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonOfertasActionPerformed
+
+    private void jButtonReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportesActionPerformed
+        VentanaReporte ventana = new VentanaReporte();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonReportesActionPerformed
 
     /**
      * @param args the command line arguments

@@ -8,8 +8,10 @@ package Tiendita.Ventanas.Usuario;
 import Tiendita.Objetos.Usuario;
 import Tiendita.Registros.UsuarioActual;
 import Tiendita.Ventanas.Login;
+import Tiendita.Ventanas.Usuario.Tienda.VentanaFactura;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -45,6 +47,12 @@ public class Carrito extends javax.swing.JFrame {
         this.modelo.addColumn("Nombre");
         this.modelo.addColumn("Precio");
         this.modelo.addColumn("Producto");
+        TableColumn columna3 = jTableProductos.getColumn("Producto");
+        TableColumn columna2 = jTableProductos.getColumn("Precio");
+        TableColumn columna1 = jTableProductos.getColumn("Nombre");
+        columna3.setPreferredWidth(50);
+        columna2.setPreferredWidth(40);
+        columna1.setPreferredWidth(120);
     }
 
     /**
@@ -64,6 +72,8 @@ public class Carrito extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProductos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Carrito");
@@ -87,6 +97,11 @@ public class Carrito extends javax.swing.JFrame {
         });
 
         jButtonPagar.setText("Pagar");
+        jButtonPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPagarActionPerformed(evt);
+            }
+        });
 
         jTableProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,20 +114,46 @@ public class Carrito extends javax.swing.JFrame {
 
             }
         ));
+        jTableProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableProductos);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Mis Productos");
+        jLabel1.setText("CARRITO");
+
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Graphviz");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(124, 124, 124))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +162,10 @@ public class Carrito extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,6 +223,45 @@ public class Carrito extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonPrincipalActionPerformed
 
+    private void jTableProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProductosMouseClicked
+        if (evt.getClickCount() == 2) {
+            int index = jTableProductos.getSelectedRow();
+            int delete = JOptionPane.showConfirmDialog(null, "¿Esta seguro?", "Alerta!", JOptionPane.YES_NO_OPTION);
+            if (JOptionPane.YES_OPTION == delete) {
+                UsuarioActual.getInstancia().deleteProducto(index);
+                for (int i = 0; i < jTableProductos.getRowCount(); i++) {
+                    modelo.removeRow(i);
+                    i -= 1;
+                }
+                jButtonPagar.setText("(" + usuario.getArticulosComprados() + ")  Q " + String.format("%.2f", usuario.getTotal()));
+                UsuarioActual.getInstancia().carrito(modelo, jTableProductos);
+            }
+        }
+    }//GEN-LAST:event_jTableProductosMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int delete = JOptionPane.showConfirmDialog(null, "¿Esta seguro de vaciar tu carrito?", "Alerta!", JOptionPane.YES_NO_OPTION);
+        if (JOptionPane.YES_OPTION == delete) {
+            UsuarioActual.getInstancia().cancelar();
+            for (int i = 0; i < jTableProductos.getRowCount(); i++) {
+                modelo.removeRow(i);
+                i -= 1;
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (!UsuarioActual.getInstancia().getUsuario().getCarrito().graphviz()) {
+            JOptionPane.showMessageDialog(null, "No tiene productos");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButtonPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPagarActionPerformed
+        VentanaFactura ventana = new VentanaFactura();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonPagarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -215,6 +298,8 @@ public class Carrito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonPagar;
     private javax.swing.JButton jButtonPrincipal;

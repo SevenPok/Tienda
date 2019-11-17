@@ -22,6 +22,14 @@ public class RegistroUsuario implements Registro<Usuario> {
         return registroUsuario;
     }
 
+    public ListaSimple<Usuario> getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(ListaSimple<Usuario> usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public boolean add(Usuario dato) {
         return usuario.compareTo(dato);

@@ -1,8 +1,9 @@
 package Tiendita.Objetos;
 
+import Tiendita.Objetos.Prototype.Clonar;
 import Tiendita.TDA.Simple.ListaSimple;
 
-public class Oferta {
+public class Oferta implements Clonar {
 
     private String descripcion;
     private double descuento;
@@ -46,6 +47,17 @@ public class Oferta {
 
     public void setPrioridad(String prioridad) {
         this.prioridad = prioridad;
+    }
+
+    @Override
+    public Clonar clonar() {
+        Oferta oferta = null;
+        try {
+            oferta = (Oferta) clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return oferta;
     }
 
 }

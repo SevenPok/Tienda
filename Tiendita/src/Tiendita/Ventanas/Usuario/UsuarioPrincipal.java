@@ -42,7 +42,7 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
     }
 
     public void productos() {
-        RegistroOferta.getInstancia().productos(establecer, boton, imagen, descripcion, jPanel1, 1, 1, jButtonCarrito);
+        RegistroOferta.getInstancia().productos(establecer, boton, imagen, descripcion, jPanel1, 1, 1, jButtonCarrito,jScrollPane2);
     }
 
     /**
@@ -177,8 +177,8 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jButton4)
                 .addContainerGap())
         );

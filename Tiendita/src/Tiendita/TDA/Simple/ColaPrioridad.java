@@ -53,6 +53,13 @@ public class ColaPrioridad<T> extends ListaSimple<T> {
         super.show();
     }
 
+    @Override
+    public T search(int index) throws Exception {
+        return super.search(index); 
+    }
+    
+    
+
     public static void main(String[] args) {
         ColaPrioridad<Oferta> cola = new ColaPrioridad<>();
         ListaSimple<Producto> simple = new ListaSimple<>();

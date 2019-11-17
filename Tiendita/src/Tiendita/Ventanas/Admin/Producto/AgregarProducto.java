@@ -299,9 +299,7 @@ public class AgregarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNombreKeyTyped
 
     private void jTextFieldPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrecioKeyTyped
-        if (Character.isDigit(evt.getKeyChar())) {
-
-        } else {
+        if (!Character.isDigit(evt.getKeyChar()) && (evt.getKeyChar() != '.' || jTextFieldPrecio.getText().contains("."))) {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldPrecioKeyTyped

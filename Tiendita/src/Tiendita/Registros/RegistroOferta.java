@@ -5,13 +5,14 @@ import Tiendita.Objetos.Herramientas;
 import Tiendita.Objetos.Oferta;
 import Tiendita.Objetos.Producto;
 import Tiendita.TDA.Simple.ColaPrioridad;
+import java.awt.Dimension;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistroOferta {
@@ -28,6 +29,14 @@ public class RegistroOferta {
             instancia = new RegistroOferta();
         }
         return instancia;
+    }
+
+    public ColaPrioridad<Oferta> getOfertas() {
+        return ofertas;
+    }
+
+    public void setOfertas(ColaPrioridad<Oferta> ofertas) {
+        this.ofertas = ofertas;
     }
 
     public void add(Oferta oferta) {
@@ -81,8 +90,10 @@ public class RegistroOferta {
     }
 
     public void productos(EstablecerBotones[] establecer, JButton[] boton, JLabel[] imagen, JLabel[] descripcion,
-            JPanel panel, int x, int y, JButton pagar
+            JPanel panel, int x, int y, JButton pagar, JScrollPane scroll
     ) {
+        int altura = (ofertas.getSize() / 2 + 1) * 215;
+        panel.setPreferredSize(new Dimension(scroll.getWidth(), altura));
         Object[] lista = ofertas.array();
         establecer = new EstablecerBotones[100];
         boton = new JButton[100];
@@ -96,7 +107,7 @@ public class RegistroOferta {
 
                     boton[contador] = new JButton("Agregar");
                     imagen[contador] = new JLabel();
-                    descripcion[contador] = new JLabel("Antes Q." + ((Producto) listaP[j]).getPrecio() + " descuento de " + ((Oferta) lista[i]).getDescuento() + "%");
+                    descripcion[contador] = new JLabel("Antes Q." + String.format("%.2f", ((Producto) listaP[j]).getPrecio()) + " desc. " + String.format("%.2f", ((Oferta) lista[i]).getDescuento()) + "%");
                     establecer[contador] = new EstablecerBotones(boton[contador], imagen[contador], descripcion[contador], (Producto) listaP[j]);
                     establecer[contador].getImagen().setSize(150, 150);
                     establecer[contador].getDescripcion().setSize(150, 30);

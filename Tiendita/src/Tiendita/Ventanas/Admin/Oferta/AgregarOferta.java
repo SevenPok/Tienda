@@ -8,6 +8,7 @@ package Tiendita.Ventanas.Admin.Oferta;
 import Tiendita.Objetos.Producto;
 import Tiendita.Registros.RegistroOferta;
 import Tiendita.Registros.RegistroProducto;
+import Tiendita.Registros.Reportes.Reporte;
 import Tiendita.TDA.Simple.ListaSimple;
 import Tiendita.Ventanas.Admin.Producto.AgregarProducto;
 import java.io.BufferedReader;
@@ -291,7 +292,9 @@ public class AgregarOferta extends javax.swing.JFrame {
         if (jTextAreaDescripcion.getText().length() > 0 && lista.getSize() > 0) {
             String[] cadena = ((String) jComboBoxDescuento.getSelectedItem()).split("%");
             double descuento = Double.parseDouble(cadena[0]);
-            RegistroOferta.getInstancia().add(new Tiendita.Objetos.Oferta(jTextAreaDescripcion.getText(), descuento, lista, (String) jComboBoxPrioridad.getSelectedItem()));
+            Tiendita.Objetos.Oferta nuevaOferta = new Tiendita.Objetos.Oferta(jTextAreaDescripcion.getText(), descuento, lista, (String) jComboBoxPrioridad.getSelectedItem());
+            RegistroOferta.getInstancia().add(nuevaOferta);
+            Reporte.getReporte().getOferta().enqueue(nuevaOferta);
             JOptionPane.showMessageDialog(null, "Se agrego correctamente");
             ListaSimple<Producto> lista2 = new ListaSimple<>();
             lista = lista2;
@@ -333,6 +336,7 @@ public class AgregarOferta extends javax.swing.JFrame {
                             }
                         }
                         RegistroOferta.getInstancia().add(new Tiendita.Objetos.Oferta(cadena[0], Double.parseDouble(cadena[1]), lista2, cadena[3]));
+                        Reporte.getReporte().getOferta().enqueue(new Tiendita.Objetos.Oferta(cadena[0], Double.parseDouble(cadena[1]), lista2, cadena[3]));
                     } catch (Exception e) {
                     }
                 }

@@ -1,6 +1,9 @@
 package Tiendita.TDA.Doble;
 
-public class ListaCircularDoble<T> {
+import Tiendita.Objetos.Herramientas;
+import Tiendita.Objetos.Prototype.Clonar;
+
+public class ListaCircularDoble<T> implements Clonar{
 
     private Nodo<T> cabeza;
     private int size;
@@ -123,6 +126,26 @@ public class ListaCircularDoble<T> {
         }
     }
 
+    public T deleteIndex(int index) throws Exception {
+        if (isEmpty()) {
+            throw new Exception("Esta vacia la lista");
+        } else if (index == 0) {
+            return removeInicio();
+        } else if (index == size - 1) {
+            return removeFin();
+        } else if (index > 0 && index < size) {
+            Nodo<T> fin = cabeza;
+            for (int i = 0; i < index; i++) {
+                fin = fin.getNext();
+            }
+            fin.getBack().setNext(fin.getNext());
+            fin.getNext().setBack(fin.getBack());
+            size--;
+            return fin.getDato();
+        }
+        throw new Exception("No se enconto el dato");
+    }
+
     public T peek() throws Exception {
         if (isEmpty()) {
             throw new Exception("Esta vacia");
@@ -153,6 +176,21 @@ public class ListaCircularDoble<T> {
         return (T[]) lista;
     }
 
+    public boolean graphviz() {
+        if (!isEmpty()) {
+            Nodo<T> aux = cabeza;
+            String cadena = "";
+            do {
+                cadena += "\"" + aux.getDato() + "\"" + "->" + "\"" + aux.getNext().getDato() + "\"" + "\n";
+                cadena += "\"" + aux.getDato() + "\"" + "->" + "\"" + aux.getBack().getDato() + "\"" + "\n";
+                aux = aux.getNext();
+            } while (aux != cabeza);
+            Herramientas.graficar(cadena, "Carrito");
+            return true;
+        }
+        return false;
+    }
+
     public void show() {
         if (isEmpty()) {
             System.out.println("Esta vacia");
@@ -175,10 +213,21 @@ public class ListaCircularDoble<T> {
         lista.show();
         System.out.println("");
         try {
-            lista.removeInicio();
-            lista.removeFin();
+            lista.deleteIndex(4);
+            System.out.println(lista.size);
+            System.out.println("");
         } catch (Exception e) {
         }
         lista.show();
+    }
+
+    @Override
+    public Clonar clonar() {
+        ListaCircularDoble<T> lista = null;
+        try {
+            lista = (ListaCircularDoble<T>) clone();
+        } catch (Exception e) {
+        }
+        return lista;
     }
 }

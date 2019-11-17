@@ -1,6 +1,8 @@
 package Tiendita.Objetos;
 
-public class Producto {
+import Tiendita.Objetos.Prototype.Clonar;
+
+public class Producto implements Clonar {
 
     private int identificador;
     private String nombre;
@@ -72,7 +74,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "identificador=" + identificador + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", existencia=" + existencia + ", direccionImagen=" + direccionImagen;
+        return nombre + ", Precio: Q." + precio;
     }
 
     @Override
@@ -90,6 +92,17 @@ public class Producto {
         int hash = 7;
         hash = 31 * hash + this.identificador;
         return hash;
+    }
+
+    @Override
+    public Clonar clonar() {
+        Producto producto = null;
+        try {
+            producto = (Producto) clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return producto;
     }
 
 }

@@ -3,7 +3,9 @@ package Tiendita.Registros;
 import Tiendita.Objetos.EstablecerBotones;
 import Tiendita.Objetos.Herramientas;
 import Tiendita.Objetos.Producto;
+import Tiendita.Objetos.Prototype.Clonar;
 import Tiendita.TDA.Simple.ListaCircularSimple;
+import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -11,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +31,14 @@ public class RegistroProducto implements Registro<Producto> {
             registroProducto = new RegistroProducto();
         }
         return registroProducto;
+    }
+
+    public ListaCircularSimple<Producto> getProducto() {
+        return producto;
+    }
+
+    public void setProducto(ListaCircularSimple<Producto> producto) {
+        this.producto = producto;
     }
 
     @Override
@@ -76,7 +87,7 @@ public class RegistroProducto implements Registro<Producto> {
             Object[] datos = new Object[3];
             datos[0] = nuevoProducto.getIdentificador();
             datos[1] = nuevoProducto.getNombre();
-            datos[2] = nuevoProducto.getPrecio();
+            datos[2] = String.format("%.2f", nuevoProducto.getPrecio());
             modelo.addRow(datos);
         }
     }
@@ -98,8 +109,6 @@ public class RegistroProducto implements Registro<Producto> {
 
     }
 
-
-
     public String showEspecifico(DefaultTableModel modelo, int index) throws Exception {
         try {
             Producto nuevo = producto.search(index);
@@ -107,7 +116,7 @@ public class RegistroProducto implements Registro<Producto> {
             datos[0] = nuevo.getIdentificador();
             datos[1] = nuevo.getNombre();
             datos[2] = nuevo.getDescripcion();
-            datos[3] = nuevo.getPrecio();
+            datos[3] = String.format("%.2f", nuevo.getPrecio());
             datos[4] = nuevo.getExistencia();
             modelo.addRow(datos);
             String imagen = nuevo.getDireccionImagen();
@@ -128,8 +137,10 @@ public class RegistroProducto implements Registro<Producto> {
     }
 
     public void productos(EstablecerBotones[] establecer, JButton[] boton, JLabel[] imagen, JLabel[] descripcion,
-            JPanel panel, int x, int y, JButton pagar
+            JPanel panel, int x, int y, JButton pagar, JScrollPane scroll
     ) {
+        int altura = (producto.getSize() / 4 + 1) * 215;
+        panel.setPreferredSize(new Dimension(scroll.getWidth(), altura));
         Object[] lista = producto.array();
         establecer = new EstablecerBotones[lista.length];
         boton = new JButton[lista.length];
@@ -138,7 +149,7 @@ public class RegistroProducto implements Registro<Producto> {
         for (int i = 0; i < lista.length; i++) {
             boton[i] = new JButton("Agregar");
             imagen[i] = new JLabel();
-            descripcion[i] = new JLabel(((Producto) lista[i]).getNombre() + " a Q." + ((Producto) lista[i]).getPrecio(), SwingConstants.CENTER);
+            descripcion[i] = new JLabel(((Producto) lista[i]).getNombre() + " a Q." + String.format("%.2f", ((Producto) lista[i]).getPrecio()), SwingConstants.CENTER);
             establecer[i] = new EstablecerBotones(boton[i], imagen[i], descripcion[i], (Producto) lista[i]);
             establecer[i].getImagen().setSize(150, 150);
             establecer[i].getDescripcion().setSize(150, 30);
@@ -160,4 +171,5 @@ public class RegistroProducto implements Registro<Producto> {
             }
         }
     }
+
 }
