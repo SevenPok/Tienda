@@ -10,6 +10,7 @@ public class Producto implements Clonar {
     private double precio;
     private int existencia;
     private String direccionImagen;
+    private double ganacias;
 
     public Producto(int identificador, String nombre, String descripcion, double precio, int existencia, String direccionImagen) {
         this.identificador = identificador;
@@ -18,6 +19,7 @@ public class Producto implements Clonar {
         this.precio = precio;
         this.existencia = existencia;
         this.direccionImagen = direccionImagen;
+        this.ganacias = 0;
     }
 
     public int getIdentificador() {
@@ -103,6 +105,14 @@ public class Producto implements Clonar {
             e.printStackTrace();
         }
         return producto;
+    }
+
+    public double getGanacias() {
+        return ganacias;
+    }
+
+    public void setGanacias(double ganacias) {
+        this.ganacias = ganacias;
     }
 
 }

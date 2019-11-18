@@ -165,6 +165,19 @@ public class ListaSimple<T> {
         throw new Exception("No se encontro el dato");
     }
 
+    public T searchK(T dato) throws Exception {
+        if (!isEmpty()) {
+            Nodo<T> search = cabeza;
+            while (search != null) {
+                if (dato.equals(search.getDato())) {
+                    return search.getDato();
+                }
+                search = search.getNext();
+            }
+        }
+        throw new Exception("No se encontro el dato");
+    }
+
     public void modify(T dato) {
         if (isEmpty()) {
             System.out.println("Esta vacia");

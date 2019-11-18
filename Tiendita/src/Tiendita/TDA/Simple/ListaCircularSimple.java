@@ -203,6 +203,14 @@ public class ListaCircularSimple<T> implements Clonar {
         return false;
     }
 
+    public Nodo<T> getCabeza() {
+        return cabeza;
+    }
+
+    public void setCabeza(Nodo<T> cabeza) {
+        this.cabeza = cabeza;
+    }
+
     public void show() {
         if (isEmpty()) {
             System.out.println("Esta vacia");

@@ -3,8 +3,9 @@ package Tiendita.Registros;
 import Tiendita.Objetos.EstablecerBotones;
 import Tiendita.Objetos.Herramientas;
 import Tiendita.Objetos.Producto;
-import Tiendita.Objetos.Prototype.Clonar;
+import Tiendita.Objetos.Usuario;
 import Tiendita.TDA.Simple.ListaCircularSimple;
+import Tiendita.TDA.Simple.Nodo;
 import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.Icon;
@@ -168,6 +169,30 @@ public class RegistroProducto implements Registro<Producto> {
             if (x > 600) {
                 x = 1;
                 y = y + 215;
+            }
+        }
+    }
+
+    public void ganancias(Usuario o) {
+        for (int i = 0; i < o.getCarrito().getSize(); i++) {
+            try {
+                Producto p = o.getCarrito().search(i);
+                p.setGanacias(p.getPrecio() + p.getGanacias());
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    public void ordenar() {
+        for (int i = 0; i < (producto.getSize() - 1); i++) {
+            Nodo<Producto> p = producto.getCabeza();
+            for (int j = 0; j < (producto.getSize() - 1); j++) {
+                if (p.getDato().getGanacias() < p.getNext().getDato().getGanacias()) {
+                    Producto aux = p.getNext().getDato();
+                    p.getNext().setDato(p.getDato());
+                    p.setDato(aux);
+                }
+                p = p.getNext();
             }
         }
     }

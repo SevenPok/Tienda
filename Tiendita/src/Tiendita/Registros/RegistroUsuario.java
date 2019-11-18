@@ -1,7 +1,15 @@
 package Tiendita.Registros;
 
+import Tiendita.Objetos.Producto;
 import Tiendita.Objetos.Usuario;
+import Tiendita.TDA.Doble.Nodo;
 import Tiendita.TDA.Simple.ListaSimple;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -107,4 +115,9 @@ public class RegistroUsuario implements Registro<Usuario> {
         }
     }
 
+    public String reporte() {
+        String cadena = "";
+
+        return cadena;
+    }
 }

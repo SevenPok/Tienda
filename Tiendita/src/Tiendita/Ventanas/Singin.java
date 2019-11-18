@@ -8,6 +8,7 @@ package Tiendita.Ventanas;
 import Tiendita.Objetos.Tarjeta;
 import Tiendita.Objetos.Usuario;
 import Tiendita.Registros.RegistroUsuario;
+import Tiendita.Registros.Reportes.Reporte;
 import javax.swing.JOptionPane;
 
 /**
@@ -268,6 +269,7 @@ public class Singin extends javax.swing.JFrame {
             Tarjeta tarjeta = new Tarjeta(nombre, Integer.parseInt(bloque1), Integer.parseInt(bloque2), Integer.parseInt(bloque3), Integer.parseInt(bloque4));
             Usuario nuevo = new Usuario(usuario, password, nombre, apellido, tarjeta);
             if (!RegistroUsuario.getRegistroUsuario().add(nuevo)) {
+                Reporte.getReporte().getUsuario().compareTo((Usuario) nuevo.clonar());
                 JOptionPane.showMessageDialog(null, "Se creo exitosamente");
                 Login ventana = new Login();
                 ventana.setVisible(true);

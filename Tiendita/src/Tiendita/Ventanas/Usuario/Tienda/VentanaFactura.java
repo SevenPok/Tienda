@@ -2,10 +2,15 @@ package Tiendita.Ventanas.Usuario.Tienda;
 
 import Tiendita.Objetos.Factura;
 import Tiendita.Objetos.Producto;
+import Tiendita.Objetos.Usuario;
+import Tiendita.Registros.Registro;
 import Tiendita.Registros.RegistroFactura;
+import Tiendita.Registros.RegistroProducto;
+import Tiendita.Registros.RegistroUsuario;
 import Tiendita.Registros.Reportes.Reporte;
 import Tiendita.Registros.UsuarioActual;
 import Tiendita.TDA.Doble.ListaCircularDoble;
+import Tiendita.TDA.Doble.Nodo;
 import Tiendita.Ventanas.Usuario.UsuarioPrincipal;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
@@ -96,10 +101,10 @@ public class VentanaFactura extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "PDf correctamente creado");
                 Factura nuevaFactura = new Factura(correlativo, jTextFieldNombreFactura.getText(),
                         jTextFieldNIT.getText(), "Freceunte", jTextFieldDireccion.getText(), jTextFieldTarjeta.getText(),
-                        UsuarioActual.getInstancia().getUsuario().getTotal(),(ListaCircularDoble<Producto>)UsuarioActual.getInstancia().getUsuario().getCarrito().clonar());
+                        UsuarioActual.getInstancia().getUsuario().getTotal(), (ListaCircularDoble<Producto>) UsuarioActual.getInstancia().getUsuario().getCarrito().clonar());
                 RegistroFactura.getInstancia().getFactura().push(nuevaFactura);
                 correlativo++;
-                
+
                 return true;
             } catch (Exception e) {
             }
@@ -335,6 +340,8 @@ public class VentanaFactura extends javax.swing.JFrame {
             int pagar = JOptionPane.showConfirmDialog(null, "Esta segura de realizar la compra", "Alert", JOptionPane.YES_NO_OPTION);
             try {
                 if (JOptionPane.YES_OPTION == pagar && creacionPDF()) {
+                    RegistroProducto.getRegistroProducto().ganancias(UsuarioActual.getInstancia().getUsuario());
+                    Reporte.getReporte().getUsuario().searchK(UsuarioActual.getInstancia().getUsuario()).setCarrito((ListaCircularDoble<Producto>)UsuarioActual.getInstancia().getUsuario().getCarrito().clonar());
                     UsuarioActual.getInstancia().pagar();
                     UsuarioPrincipal ventana = new UsuarioPrincipal();
                     ventana.setVisible(true);

@@ -5,7 +5,9 @@
  */
 package Tiendita.Registros.Reportes;
 
+import Tiendita.Objetos.Factura;
 import Tiendita.Objetos.Herramientas;
+import Tiendita.Registros.RegistroFactura;
 import Tiendita.Ventanas.Admin.Principal;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -47,6 +49,11 @@ public class VentanaReporte extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Reporte 1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setText("Reporte 2");
@@ -67,6 +74,11 @@ public class VentanaReporte extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton6.setText("Reporte 6");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Volver");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -144,8 +156,43 @@ public class VentanaReporte extends javax.swing.JFrame {
                 }
             }
             Herramientas.escribirArchivo(Reporte.getReporte().reporteOferta(), "");
+            txtRuta.setText("");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if (RegistroFactura.getInstancia().getFactura().getSize() > 0) {
+            JFileChooser fc = new JFileChooser();
+            int seleccion = fc.showOpenDialog(this);
+            if (JFileChooser.APPROVE_OPTION == seleccion) {
+                File archivo = fc.getSelectedFile();
+                txtRuta.setText(archivo.getAbsolutePath() + ".html");
+                try {
+                    Herramientas.escribirArchivo(Reporte.getReporte().reporteFactura(), txtRuta.getText());
+                } catch (Exception e) {
+                }
+            }
+            Herramientas.escribirArchivo(Reporte.getReporte().reporteFactura(), "");
+            txtRuta.setText("");
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (Reporte.getReporte().getUsuario().getSize() > 0) {
+            JFileChooser fc = new JFileChooser();
+            int seleccion = fc.showOpenDialog(this);
+            if (JFileChooser.APPROVE_OPTION == seleccion) {
+                File archivo = fc.getSelectedFile();
+                txtRuta.setText(archivo.getAbsolutePath() + ".html");
+                try {
+                    Herramientas.escribirArchivo(Reporte.getReporte().reporteUsuario(), txtRuta.getText());
+                } catch (Exception e) {
+                }
+            }
+            Herramientas.escribirArchivo(Reporte.getReporte().reporteUsuario(), "");
+            txtRuta.setText("");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

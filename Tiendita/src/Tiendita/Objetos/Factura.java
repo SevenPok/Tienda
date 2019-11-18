@@ -1,7 +1,6 @@
 package Tiendita.Objetos;
 
 import Tiendita.TDA.Doble.ListaCircularDoble;
-import Tiendita.TDA.Simple.ListaCircularSimple;
 
 public class Factura {
 

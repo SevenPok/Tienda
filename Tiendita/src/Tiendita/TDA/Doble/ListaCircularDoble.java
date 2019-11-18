@@ -3,7 +3,7 @@ package Tiendita.TDA.Doble;
 import Tiendita.Objetos.Herramientas;
 import Tiendita.Objetos.Prototype.Clonar;
 
-public class ListaCircularDoble<T> implements Clonar{
+public class ListaCircularDoble<T> implements Clonar {
 
     private Nodo<T> cabeza;
     private int size;
@@ -19,6 +19,14 @@ public class ListaCircularDoble<T> implements Clonar{
 
     public int getSize() {
         return size;
+    }
+
+    public Nodo<T> getCabeza() {
+        return cabeza;
+    }
+
+    public void setCabeza(Nodo<T> cabeza) {
+        this.cabeza = cabeza;
     }
 
     public void addInicio(T dato) {
@@ -101,6 +109,25 @@ public class ListaCircularDoble<T> implements Clonar{
                 }
                 fin = fin.getNext();
             } while (fin != cabeza);
+            throw new Exception("No se encontro el dato");
+        }
+    }
+
+    public T search(int index) throws Exception {
+        if (isEmpty()) {
+            throw new Exception("Esta vacia");
+        } else {
+            if (index == 0) {
+                return cabeza.getDato();
+            } else if (index == (size - 1)) {
+                return cabeza.getBack().getDato();
+            } else if (index > 0 && index < (size - 1)) {
+                Nodo<T> fin = cabeza;
+                for (int i = 0; i < index; i++) {
+                    fin = fin.getNext();
+                }
+                return fin.getDato();
+            }
             throw new Exception("No se encontro el dato");
         }
     }
@@ -213,12 +240,11 @@ public class ListaCircularDoble<T> implements Clonar{
         lista.show();
         System.out.println("");
         try {
-            lista.deleteIndex(4);
-            System.out.println(lista.size);
             System.out.println("");
+            System.out.println(lista.search(1));
         } catch (Exception e) {
         }
-        lista.show();
+        
     }
 
     @Override
